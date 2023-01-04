@@ -1,3 +1,28 @@
+<?php session_start();
+    require '../config.php';
+    if(isset($_POST['login'])){
+        $user = $collection->findOne(['email' => $_POST['loginEmail']]);
+        
+        if($user){ 
+            $password = md5($_POST['loginPassword']);
+            if($password == $user['password']){
+                $_SESSION['id'] = $user['_id'];
+                // login sukses, alihkan ke halaman timeline
+                header("Location: index.php");
+            }
+            else{
+                $message = "Password Salah";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+        }
+        else{
+            $message = "Email Salah";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+
+   }
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,7 +52,7 @@
                         <br>
                         Silahkan Login
                     </h1>
-                    <form class="container" action="index.html" method="post">
+                    <form class="container" action="login.php" method="post">
                         <div class="mb-3">
                             <label for="loginEmail" class="form-label">Email</label>
                             <input type="email" class="form-control" name="loginEmail" aria-describedby="emailHelp" required>

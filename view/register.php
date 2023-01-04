@@ -2,10 +2,13 @@
    if(isset($_POST['register'])){
       require '../config.php';
       $insertOneResult = $collection->insertOne([
-          'registernama' => $_POST['registernama'],
-          'registerEmail' => $_POST['registerEmail'],
-          'registerPassword' => $_POST['registerPassword'],
+          'nama' => $_POST['nama'],
+          'email' => $_POST['email'],
+          'password' => md5($_POST['password']),
+          'notelp' => $_POST['notelp'],
+          'gopay'=> array('saldo' => 0),
       ]);
+      $_SESSION['id'] = $insertOneResult->getInsertedId();
       $_SESSION['success'] = "Data Berhasil di tambahkan";
       header("Location: index.php");
    }
@@ -37,16 +40,20 @@
                     </h1>
                     <form class="container" action="register.php" method="POST">
                         <div class="mb-3">
-                            <label for="registernama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" name="registernama" aria-describedby="namaHelp" required>
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" name="nama" aria-describedby="namaHelp" required>
                         </div>
                         <div class="mb-3">
-                            <label for="registerEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="registerEmail" aria-describedby="emailHelp" required>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required>
                         </div>
                         <div class="mb-3">
-                            <label for="registerPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="registerPassword">
+                            <label for="notelp" class="form-label">No Telepon</label>
+                            <input type="notelp" class="form-control" name="notelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password">
                         </div>
                         <button type="submit" name="register" class="btn btn-success me-4">Daftar</button>
                     </form>

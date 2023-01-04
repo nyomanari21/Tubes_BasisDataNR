@@ -1,3 +1,9 @@
+<?php session_start(); 
+ if(!isset($_SESSION['id'])){
+   header("Location: login.php");
+ }
+ 
+  ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -36,6 +42,12 @@
               </div>
               <div class="mb-3">
                   <label for="pembayaran" class="form-label">Pilih metode pembayaran</label>
+                  <p>
+                    <?php require '../config.php';
+                    $terms = ['_id' => $_SESSION['id']];
+                    $user = $collection->findOne($terms);
+                    echo $user['gopay']['saldo']?>
+                  </p>
                   <select class="form-select" name="pembayaran" id="pembayaran" aria-label="Pembayaran">
                       <option value="gopay">Go-Pay</option>
                       <option value="cash">Cash</option>
@@ -44,7 +56,7 @@
               
               <div class="row">
                 <div class="col">
-                  <a href="index.html">
+                  <a href="index.php">
                     <div class="btn btn-danger">Kembali</div>
                   </a>
                 </div>
@@ -56,7 +68,7 @@
           </div>
       </div>
       <div class="d-flex justify-content-center" >
-        <div class="all-elephant-cards row"></div>
+        <div class="all-Driver-cards row"></div>
       </div>
     </div>
   </div>
@@ -69,13 +81,12 @@
         var Promo = document.getElementById("promo").value;
         var kendaraan = document.getElementById("kendaraan").value;
         var pembayaran = document.getElementById("pembayaran").value;
-        const elephantsArray = [
+        const driverArray = [
           {
             id: 1,
             lokSekarang: lokasiSekarang,
             lokTujuan: lokasiTujuan,
             kend: kendaraan,
-            driver: "Andi",
             promo: Promo,
             pemb: pembayaran,
             harga: Math.floor((Math.random() * 100) + 1) * 1000,
@@ -86,7 +97,6 @@
             lokSekarang: lokasiSekarang,
             lokTujuan: lokasiTujuan,
             kend: kendaraan,
-            driver: "Budi",
             promo: Promo,
             pemb: pembayaran,
             harga: Math.floor((Math.random() * 100) + 1)  * 1000,
@@ -97,7 +107,6 @@
             lokSekarang: lokasiSekarang,
             lokTujuan: lokasiTujuan,
             kend: kendaraan,
-            driver: "Cecep",
             promo: Promo,
             pemb: pembayaran,
             harga: Math.floor((Math.random() * 100) + 1)  * 1000,
@@ -107,36 +116,28 @@
               
         let htmlCode = ``;
         
-        elephantsArray.forEach(function(singleElephantObjects) {
-          // uncomment the line below, to see each of the 4 objects rendered in the console.
-          //console.log(singleElephantObjects);
-
-          // we take our previous empty htmlCode variable and add our html codes to it.
-
-          // because the forEach method returns objects, we can then use the dot notation to reference children of the object, e.g, elephant.driver;
+        driverArray.forEach(function(singleDriverObjects) {
+          
           htmlCode =
             htmlCode +
             `
-            <form class="col-4" action="sini.html">
+            <form class="col-4" action="driverditemukan.php" method="post">
             
             <div class="card">
               <div class="card-body">
                 <card>
                   <div>
-                  <h5>Nama Driver: ${singleElephantObjects.driver}</h5>
-                  <p>Lokasi Sekarang: ${singleElephantObjects.lokSekarang}</p>
-                  <input type="hidden" name="lokTujuan" value="${singleElephantObjects.lokTujuan}" required>
-                  <input type="hidden" name="lokSekarang" value="${singleElephantObjects.lokSekarang}" required>
-                  <input type="hidden" name="promo" value="${singleElephantObjects.promo}">
-                  <input type="hidden" name="driver" value="${singleElephantObjects.driver}">
-                  <input type="hidden" name="harga" value="${singleElephantObjects.harga}">
-                  <input type="hidden" name="kendaraan" value="${singleElephantObjects.kend}">
-                  <input type="hidden" name="pembayaran" value="${singleElephantObjects.pemb}">
+                  <p>Lokasi Sekarang: ${singleDriverObjects.lokSekarang}</p>
+                  <input type="hidden" name="lokTujuan" value="${singleDriverObjects.lokTujuan}" required>
+                  <input type="hidden" name="lokSekarang" value="${singleDriverObjects.lokSekarang}" required>
+                  <input type="hidden" name="promo" value="${singleDriverObjects.promo}">
+                  <input type="hidden" name="harga" value="${singleDriverObjects.harga}">
+                  <input type="hidden" name="pembayaran" value="${singleDriverObjects.pemb}">
+                  <p>Lokasi Tujuan: ${singleDriverObjects.lokTujuan}</p>
+                  <p>Kendaraan: ${singleDriverObjects.kend}</p>
+                  <p>Harga: Rp ${singleDriverObjects.harga}</p>
                   
-                  <p>Lokasi Tujuan: ${singleElephantObjects.lokTujuan}</p>
-                  <p>Kendaraan: ${singleElephantObjects.kend}</p>
-                  <p>Harga: Rp ${singleElephantObjects.harga}</p>
-                  <button type="submit" class="btn btn-danger" id="btn_${singleElephantObjects.id}">btn_${singleElephantObjects.id}</button>
+                  <button type="submit" name="caridriver" class="btn btn-danger" >pilih</button>
                   </div>
                 </card>
               </div>
@@ -147,12 +148,12 @@
           // console.log(htmlCode);
         
         });
-        // we are simply saying, "let elephantCards be = to that div", to target that div, we reference the class we gave to it.
-        const elephantCards = document.querySelector(".all-elephant-cards");
+        // we are simply saying, "let DriverCards be = to that div", to target that div, we reference the class we gave to it.
+        const DriverCards = document.querySelector(".all-Driver-cards");
 
         // here's how we do the render;
-        // since elephantCards is now = to that div, we now say let the inside of that div take in our htmlCode variable that holds our html codes.
-        elephantCards.innerHTML = htmlCode;
+        // since DriverCards is now = to that div, we now say let the inside of that div take in our htmlCode variable that holds our html codes.
+        DriverCards.innerHTML = htmlCode;
       }
     </script>
 

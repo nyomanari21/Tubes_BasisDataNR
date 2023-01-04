@@ -1,3 +1,8 @@
+<?php session_start(); 
+  if(!isset($_SESSION['id'])){
+    header("Location: login.php");
+  }
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,7 +17,7 @@
     <div class="d-flex justify-content-center row">
         <h1 class="text-center">Terima Kasih Sudah Menggunakan Go-Ride</h1>
         <div class="col-4 text-center">
-           <a href="index.html" class="btn btn-success text-center">Kembali Ke Halaman Utama</a>
+           <a href="index.php" class="btn btn-success text-center">Kembali Ke Halaman Utama</a>
         </div>
     </div>
 
