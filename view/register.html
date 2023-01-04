@@ -1,3 +1,16 @@
+<?php session_start();
+   if(isset($_POST['submit'])){
+      require 'config.php';
+      $insertOneResult = $collection->insertOne([
+          'NIM' => $_POST['NIM'],
+          'Nama' => $_POST['Nama'],
+          'IPK' => $_POST['IPK'],
+      ]);
+      $_SESSION['success'] = "Data Mahasiswa Berhasil di tambahkan";
+      header("Location: index.php");
+   }
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -37,7 +50,7 @@
                         </div>
                         <button type="submit" name="register" class="btn btn-success me-4">Daftar</button>
                     </form>
-                    <p class="container mt-3">Sudah punya akun? <a href="login.html">Masuk sekarang!</a></p>
+                    <p class="container mt-3">Sudah punya akun? <a href="login.php">Masuk sekarang!</a></p>
                 </div>
             </div>
         </div>
