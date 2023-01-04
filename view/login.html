@@ -10,11 +10,15 @@
     
     <!-- Form Login -->
     <section>
-        <div class="container-fluid">
+        <div class="container-fluid h-10">
             <div class="row">
                 <!-- Image -->
-                <div class="col">
-                    <img src="https://upload.wikimedia.org/wikipedia/it/6/61/Death_Stranding_-_Sam_%28trailer%29.png" class="img-fluid" alt="img">
+                <div class="col" style="
+                background-image: url(https://upload.wikimedia.org/wikipedia/it/6/61/Death_Stranding_-_Sam_%28trailer%29.png); background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;">
+                    <!-- <img src="https://upload.wikimedia.org/wikipedia/it/6/61/Death_Stranding_-_Sam_%28trailer%29.png" class="img-fluid" alt="img"> -->
                 </div>
                 <!-- Forms -->                                                                                                                                                                                                      
                 <div class="col mt-5">
@@ -26,15 +30,16 @@
                     <form class="container" action="index.html" method="post">
                         <div class="mb-3">
                             <label for="loginEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="loginEmail" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" name="loginEmail" aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div class="mb-3">
                             <label for="loginPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="loginPassword">
+                            <input type="password" class="form-control" name="loginPassword" required>
                         </div>
                         <button type="submit" name="login" class="btn btn-success">Masuk</button>
                     </form>
+                    <p class="container mt-3">Belum punya akun? <a href="register.html">Daftar sekarang!</a></p>
                 </div>
             </div>
         </div>
