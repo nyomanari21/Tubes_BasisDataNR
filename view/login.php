@@ -39,10 +39,10 @@
             <div class="row">
                 <!-- Image -->
                 <div class="col" style="
-                background-image: url(https://upload.wikimedia.org/wikipedia/it/6/61/Death_Stranding_-_Sam_%28trailer%29.png); background-position: center;
-                background-size: cover;
+                background-image: url(https://carisinyal.com/wp-content/uploads/2016/07/Kang-Ojek_.webp); background-position: center;
+               
                 background-repeat: no-repeat;
-                background-attachment: fixed;">
+                ">
                     <!-- <img src="https://upload.wikimedia.org/wikipedia/it/6/61/Death_Stranding_-_Sam_%28trailer%29.png" class="img-fluid" alt="img"> -->
                 </div>
                 <!-- Forms -->                                                                                                                                                                                                      
@@ -56,7 +56,7 @@
                         <div class="mb-3">
                             <label for="loginEmail" class="form-label">Email</label>
                             <input type="email" class="form-control" name="loginEmail" aria-describedby="emailHelp" required>
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            
                         </div>
                         <div class="mb-3">
                             <label for="loginPassword" class="form-label">Password</label>
