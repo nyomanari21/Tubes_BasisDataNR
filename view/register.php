@@ -31,7 +31,7 @@
             <div class="row">
                 <!-- Image -->
                 <div class="col">
-                    <img src="https://upload.wikimedia.org/wikipedia/it/6/61/Death_Stranding_-_Sam_%28trailer%29.png" class="img-fluid" alt="img">
+                    <img src="https://carisinyal.com/wp-content/uploads/2016/07/Kang-Ojek_.webp" class="img-fluid" alt="img">
                 </div>
                 <!-- Forms -->                                                                                                                                                                                                      
                 <div class="col mt-5">
